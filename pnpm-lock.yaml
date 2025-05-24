@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@content-island/api-client':
+        specifier: ^0.6.0
+        version: 0.6.0
       '@nuxt/kit':
         specifier: ^3.17.4
         version: 3.17.4(magicast@0.3.5)
@@ -191,6 +194,9 @@ packages:
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
     engines: {node: '>=0.1.90'}
+
+  '@content-island/api-client@0.6.0':
+    resolution: {integrity: sha512-FquTk2JfZUxys37iop1HAPDUsMMvM4B74gYUOABehUFJWYjjZaeEJUgSOtU8iEkcV6odiDsQNP/nc/B+PbTB7A==}
 
   '@dabh/diagnostics@2.0.3':
     resolution: {integrity: sha512-hrlQOIi7hAfzsMqlGSFyVucrx38O+j6wiGOf//H2ecvIEqYN4ADBSS2iLMh5UFyDunCNniUIPk/q3riFv45xRA==}
@@ -4610,6 +4616,8 @@ snapshots:
       mime: 3.0.0
 
   '@colors/colors@1.6.0': {}
+
+  '@content-island/api-client@0.6.0': {}
 
   '@dabh/diagnostics@2.0.3':
     dependencies:
