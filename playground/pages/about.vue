@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div v-if="page">
     <h1>About</h1>
-    <p>{{ page.shorBio }}</p>
-    <div v-html="page.extendedBio"></div>
+    <p>{{ page.shortBio }}</p>
+    <MDC :value="page.extendedBio"></MDC>
   </div>
 </template>
 
@@ -13,11 +13,10 @@ const { $contentIsland } = useNuxtApp();
 
 const { data: page } = await useAsyncData<About>(async () => {
   const page = await $contentIsland.getContent<About>(
-    process.env.NUXT_PUBLIC_CONTENT_ID_TEST,
+    process.env.NUXT_PUBLIC_CONTENT_ID_TEST!, // id, hidden in .env for demonstration purposes
     "About" // contentType
   );
 
   return page;
-  // return { ...page, extendedBio: transpileMarkdown(page.extendedBio) } as About;
 });
 </script>

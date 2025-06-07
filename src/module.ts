@@ -1,4 +1,9 @@
-import { defineNuxtModule, addPlugin, createResolver } from "@nuxt/kit";
+import {
+  defineNuxtModule,
+  addPlugin,
+  createResolver,
+  installModule,
+} from "@nuxt/kit";
 import type { ModuleOptions } from "./types";
 
 // Module options TypeScript interface definition
@@ -14,7 +19,7 @@ export default defineNuxtModule<ModuleOptions>({
     apiVersion: "1.0",
     domain: "api.contentisland.net",
   },
-  setup(options, nuxt) {
+  async setup(options, nuxt) {
     // Skip when preparing
     if (nuxt.options._prepare) return;
 
@@ -23,6 +28,7 @@ export default defineNuxtModule<ModuleOptions>({
     // Add the options to the public runtime config for the plugin
     nuxt.options.runtimeConfig.public.contentIsland ||= {};
 
+    // Merge the module options into the public runtime config
     Object.assign(
       nuxt.options.runtimeConfig.public.contentIsland as ModuleOptions,
       {
@@ -32,6 +38,11 @@ export default defineNuxtModule<ModuleOptions>({
         domain: options.domain,
       }
     );
+
+    // Register `@nuxtjs/mdc` module
+    await installModule("@nuxtjs/mdc", {
+      exposeConfig: true,
+    });
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve("./runtime/plugin"));

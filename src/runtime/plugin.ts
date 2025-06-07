@@ -1,5 +1,7 @@
 import { createClient, mapContentToModel } from "@content-island/api-client";
+
 import type { ModuleOptions } from "../types";
+import { slugify } from "./lib/slugify";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig();
@@ -29,29 +31,51 @@ export default defineNuxtPlugin((nuxtApp) => {
   /**
    * @see https://docs.contentisland.net/client-api/get-content/
    */
-  const getContent = async <T extends unknown>(
+  const getContent = async <
+    T extends {
+      [k: string]: unknown;
+      slug?: string;
+    }
+  >(
     id: string,
     contentType: string
-  ) => {
+  ): Promise<T & { slug: string }> => {
     const contentInfo = await contentIslandClient.getContent(id, {
       contentType,
     });
 
-    return mapContentToModel<T & Parameters<typeof mapContentToModel>[0]>(
-      contentInfo
-    );
+    const toModel = mapContentToModel<
+      T & Parameters<typeof mapContentToModel>[0]
+    >(contentInfo);
+
+    return {
+      ...toModel,
+      slug: toModel?.slug || slugify((toModel?.title || "") as string),
+    };
   };
 
   /**
    * @see https://docs.contentisland.net/client-api/get-content-list/
    */
-  const getContentList = async <T extends unknown>(contentType: string) => {
+  const getContentList = async <
+    T extends {
+      [k: string]: unknown;
+      slug?: string;
+    }
+  >(
+    contentType: string
+  ): Promise<(T & { slug: string })[]> => {
     const content = await contentIslandClient.getContentList({ contentType });
 
     const contentList = content.map((contentInfo) => {
-      return mapContentToModel<T & Parameters<typeof mapContentToModel>[0]>(
-        contentInfo
-      );
+      const toModel = mapContentToModel<
+        T & Parameters<typeof mapContentToModel>[0]
+      >(contentInfo);
+
+      return {
+        ...toModel,
+        slug: toModel?.slug || slugify((toModel?.title || "") as string),
+      };
     });
 
     return contentList;
