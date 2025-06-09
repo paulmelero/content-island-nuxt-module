@@ -2,6 +2,7 @@ import { createClient, mapContentToModel } from '@content-island/api-client'
 
 import type { ModuleOptions } from '../../types'
 import { slugify } from '../lib/slugify'
+import { defineNuxtPlugin, useRuntimeConfig } from '#app'
 
 export default defineNuxtPlugin((_nuxtApp) => {
   const config = useRuntimeConfig()
