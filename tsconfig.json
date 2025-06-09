@@ -1,8 +1,7 @@
 {
   "extends": "./.nuxt/tsconfig.json",
-  "exclude": [
-    "dist",
-    "node_modules",
-    "playground",
-  ]
+  "compilerOptions": {
+    "types": ["vitest/globals"]
+  },
+  "exclude": ["dist", "node_modules", "playground"]
 }

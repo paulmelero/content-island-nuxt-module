@@ -5,14 +5,20 @@
       <p>Listado de post</p>
     </div>
     <ul class="posts__list">
-      <li v-for="post in data">
+      <li
+        v-for="post in data"
+        :key="post.slug"
+      >
         <article class="post">
-          <NuxtLink :to="`/posts/${post.slug}`" class="post__link">
+          <NuxtLink
+            :to="`/posts/${post.slug}`"
+            class="post__link"
+          >
             <img
               :src="post.image.link"
               :alt="post.image.name"
               class="post__image"
-            />
+            >
           </NuxtLink>
           <div class="post__text">
             <div class="post__header">
@@ -25,8 +31,10 @@
                   })
                 }}</time>
               </p>
-              <NuxtLink :to="`/posts/${post.slug}`" class="post__title"
-                ><h2>{{ post.title }}</h2>
+              <NuxtLink
+                :to="`/posts/${post.slug}`"
+                class="post__title"
+              ><h2>{{ post.title }}</h2>
 
                 <div>
                   <p class="post__description">
@@ -43,20 +51,20 @@
 </template>
 
 <script setup lang="ts">
-import type { Post } from "~/types";
+import type { Post } from '~/types'
 
-const nuxtApp = useNuxtApp();
+const nuxtApp = useNuxtApp()
 
 const { data } = await useAsyncData(
-  "posts-index",
-  () => nuxtApp.$contentIsland.getContentList<Post>("post"),
+  'posts-index',
+  () => nuxtApp.$contentIsland.getContentList<Post>('post'),
   {
     // Optional optimization
     getCachedData(key) {
-      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+      return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
     },
-  }
-);
+  },
+)
 </script>
 
 <style scoped>

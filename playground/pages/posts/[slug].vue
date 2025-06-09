@@ -3,15 +3,23 @@
     class="container background"
     :style="`--postImage: url(${post?.image.link})`"
   >
-    <article class="article" v-if="post">
+    <article
+      v-if="post"
+      class="article"
+    >
       <header class="article__header">
         <p>
           <time :datetime="post.date">{{ post.date }}</time>
         </p>
-        <h1 class="article__title">{{ post.title }}</h1>
+        <h1 class="article__title">
+          {{ post.title }}
+        </h1>
       </header>
 
-      <MarkdownContent :value="post.content" class="article__content" />
+      <MarkdownContent
+        :value="post.content"
+        class="article__content"
+      />
 
       <footer>
         <p>
@@ -23,35 +31,35 @@
 </template>
 
 <script setup lang="ts">
-import type { Post } from "~/types";
+import type { Post } from '~/types'
 
-const { $contentIsland } = useNuxtApp();
+const { $contentIsland } = useNuxtApp()
 
-const route = useRoute();
+const route = useRoute()
 
-const slug = route.params.slug as string;
+const slug = route.params.slug as string
 
 const { data: post } = await useAsyncData<Post>(`post-${slug}`, async () => {
-  const posts = await $contentIsland.getContentList<Post>("post");
+  const posts = await $contentIsland.getContentList<Post>('post')
 
-  const foundPost = posts.find((post) => post.slug === slug);
+  const foundPost = posts.find(post => post.slug === slug)
 
   if (!foundPost) {
     throw createError({
       statusCode: 404,
       message: `Post with slug "${slug}" not found`,
-    });
+    })
   }
 
   return {
     ...foundPost,
-    date: new Date(foundPost.date).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+    date: new Date(foundPost.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     }),
-  };
-});
+  }
+})
 </script>
 
 <style scoped>

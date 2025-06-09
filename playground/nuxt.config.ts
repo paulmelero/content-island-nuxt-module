@@ -1,13 +1,13 @@
 export default defineNuxtConfig({
-  css: ["~/assets/styles/main.css"],
-  modules: ["../src/module"],
+  modules: ['../src/module'],
   devtools: { enabled: true },
+  css: ['~/assets/styles/main.css'],
   contentIsland: {
-    markdownContentComponentClass: "markdown-content",
+    markdownContentComponentClass: 'markdown-content',
     mdc: {
       highlight: {
-        theme: "material-theme-darker",
+        theme: 'material-theme-darker',
       },
     },
   },
-});
+})

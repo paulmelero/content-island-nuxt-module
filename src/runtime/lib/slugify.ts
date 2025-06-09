@@ -5,8 +5,9 @@ export const slugify = (text: string): string => {
       .toLowerCase()
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize
       .normalize('NFD') // Normalize to NFD form
-      .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+      .replace(/[\u0300-\u036F]/g, '') // Remove diacritics
       .replace(/\s+/g, '-') // Replace spaces with -
-      .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-  );
-};
+      .replace(/[^\w-]+/g, '') // Remove all non-word chars
+      .replace(/^-+|-+$/g, '') // Remove leading and trailing hyphens
+  )
+}

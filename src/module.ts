@@ -4,37 +4,37 @@ import {
   createResolver,
   installModule,
   addComponent,
-} from "@nuxt/kit";
-import type { ModuleOptions } from "./types";
+} from '@nuxt/kit'
+import type { ModuleOptions } from './types'
 
 // Module options TypeScript interface definition
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "content-island",
-    configKey: "contentIsland",
+    name: 'content-island',
+    configKey: 'contentIsland',
   },
   // Default configuration options of the Nuxt module
   defaults: {
     accessToken: process.env.CONTENT_ISLAND_ACCESS_TOKEN,
-    apiVersion: "1.0",
-    domain: "api.contentisland.net",
+    apiVersion: '1.0',
+    domain: 'api.contentisland.net',
     mdc: {
       highlight: false,
       headings: {
         anchorLinks: false,
       },
     },
-    markdownContentComponentClass: "md-content",
+    markdownContentComponentClass: 'md-content',
   },
   async setup(options, nuxt) {
     // Skip when preparing
-    if (nuxt.options._prepare) return;
+    if (nuxt.options._prepare) return
 
-    const resolver = createResolver(import.meta.url);
+    const resolver = createResolver(import.meta.url)
 
     // Add the options to the public runtime config for the plugin
-    nuxt.options.runtimeConfig.public.contentIsland ||= {};
+    nuxt.options.runtimeConfig.public.contentIsland ||= {}
     Object.assign(
       nuxt.options.runtimeConfig.public.contentIsland as ModuleOptions,
       {
@@ -43,22 +43,22 @@ export default defineNuxtModule<ModuleOptions>({
         apiVersion: options.apiVersion,
         domain: options.domain,
         markdownContentComponentClass: options.markdownContentComponentClass,
-      }
-    );
+      },
+    )
 
     // Register `@nuxtjs/mdc` module
-    await installModule("@nuxtjs/mdc", {
+    await installModule('@nuxtjs/mdc', {
       highlight: options.mdc.highlight,
-    });
+    })
 
     // Add custom MDC wrapper component
     addComponent({
-      name: "MarkdownContent",
-      filePath: resolver.resolve("runtime/components/MarkdownContent"),
-    });
+      name: 'MarkdownContent',
+      filePath: resolver.resolve('runtime/components/MarkdownContent'),
+    })
 
     // Register the content island SDK via plugin
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve("./runtime/plugins/content-island"));
+    addPlugin(resolver.resolve('./runtime/plugins/content-island'))
   },
-});
+})

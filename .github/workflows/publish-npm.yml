@@ -1,0 +1,45 @@
+name: Publish Package to NPM
+
+on:
+  push:
+    branches:
+      - main # Trigger the workflow on pushes to the main branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to allow changelogen to commit, tag, and for git push
+      id-token: write # Recommended for npm provenance (trusted publishing)
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history for changelogen to correctly determine version changes
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.9.0 # Specify the pnpm version from your package.json (packageManager field)
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x" # Use a Node.js version compatible with your project (e.g., LTS)
+          registry-url: "https://registry.npmjs.org" # Necessary for npm publish
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure Git user
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+
+      - name: Run release script
+        run: pnpm run release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Token for publishing to npm, used by 'npm publish' via .npmrc configured by setup-node
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token for changelogen to potentially create GitHub releases and for 'git push'
