@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.5
+
+[compare changes](https://github.com/paulmelero/content-island-nuxt-module/compare/v0.0.4...v0.0.5)
+
+### 🩹 Fixes
+
+- Add vite config for mdc ([88b08fd](https://github.com/paulmelero/content-island-nuxt-module/commit/88b08fd))
+
+### 🏡 Chore
+
+- **release:** V0.0.4 ([9815d7e](https://github.com/paulmelero/content-island-nuxt-module/commit/9815d7e))
+
+### ❤️ Contributors
+
+- Paulmelero ([@paulmelero](https://github.com/paulmelero))
+
 ## v0.0.4
 
 [compare changes](https://github.com/paulmelero/content-island-nuxt-module/compare/v0.0.3...v0.0.4)
