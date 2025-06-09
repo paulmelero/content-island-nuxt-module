@@ -37,7 +37,7 @@ jobs:
           git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
 
       - name: Build script
-        run: pnpm prepack
+        run: pnpm dev:prepare && pnpm prepack
 
       - name: Run release script
         run: pnpm release
