@@ -1,5 +1,6 @@
 import { defineComponent, h } from 'vue'
 import MDC from '@nuxtjs/mdc/runtime/components/MDC.vue'
+import { useRuntimeConfig } from '#app'
 
 export default defineComponent({
   name: 'MarkdownContent',
