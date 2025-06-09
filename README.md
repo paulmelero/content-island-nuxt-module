@@ -27,6 +27,12 @@ Install the module to your Nuxt application with one command:
 npx nuxi module add content-island-nuxt-module
 ```
 
+## Requirements
+
+- This module requires Nuxt 3.0 or later.
+- You need a Content Island account to use this module. You can sign up for free at [Content Island](https://contentisland.net/).
+- You need to have a Content Island project set up and an API token to access your content.
+
 ## Usage
 
 After installing the module, you can start using it in your Nuxt application.
@@ -94,7 +100,7 @@ For rendering Markdown content, the Content Island Nuxt Module uses the [Nuxt MD
 
 Content Island provides a `MarkdownContent` component that you can use to easily render Markdown content. You can import it from the module or use it directly if you have auto-imports enabled. It's a wrapper around the `@nuxt/mdc` module's `MDC` component, which provides syntax highlighting and other features.
 
-You can see the full list of available config options for MDC in the [Nuxt MDC documentation](https://github.com/nuxt-modules/mdc?tab=readme-ov-file#configurations).
+#### Syntax Highlighting
 
 For syntax highlighting, you can use the `highlight` option in the module configuration. By default, it is disabled, but you can enable it by setting the `mdc.highlight` option to a config object handled by the `@nuxt/mdc` module. For example, you can set the theme for code highlighting:
 
@@ -113,6 +119,8 @@ export default defineNuxtConfig({
 ```
 
 For a full list of available themes, you can check the [Shiki documentation](https://shiki.style/themes#bundled-themes).
+
+You can see the full list of available config options for MDC in the [Nuxt MDC documentation](https://github.com/nuxt-modules/mdc?tab=readme-ov-file#configurations). Or the MDC Nuxt module options type in [MDC's `ModuleOptions` source code](https://github.com/nuxt-modules/mdc/blob/main/src/module.ts).
 
 That's it! You can now use Content Island - Nuxt Module in your Nuxt app ✨
 
