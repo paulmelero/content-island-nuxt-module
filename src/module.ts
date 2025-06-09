@@ -51,6 +51,32 @@ export default defineNuxtModule<ModuleOptions>({
       highlight: options.mdc.highlight,
     })
 
+    // Prevent Vite from alerting about missing dependencies
+    nuxt.hook('vite:extendConfig', (viteInlineConfig, { isClient }) => {
+      if (!isClient) return
+
+      viteInlineConfig.optimizeDeps ||= {}
+      viteInlineConfig.optimizeDeps.include ||= []
+
+      const mdcDeps = [
+        'remark-gfm',
+        'remark-emoji',
+        'remark-mdc',
+        'remark-rehype',
+        'rehype-raw',
+        'parse5',
+        'unist-util-visit',
+        'unified',
+        'debug',
+      ]
+
+      for (const dep of mdcDeps) {
+        if (!viteInlineConfig.optimizeDeps.include.includes(dep)) {
+          viteInlineConfig.optimizeDeps.include.push(dep)
+        }
+      }
+    })
+
     // Add custom MDC wrapper component
     addComponent({
       name: 'MarkdownContent',
