@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.3
+
+[compare changes](https://github.com/paulmelero/content-island-nuxt-module/compare/v0.0.2...v0.0.3)
+
+### 🩹 Fixes
+
+- Try to fix output and publish step ([5cd660d](https://github.com/paulmelero/content-island-nuxt-module/commit/5cd660d))
+
+### 🏡 Chore
+
+- **release:** V0.0.2 ([46fdfa8](https://github.com/paulmelero/content-island-nuxt-module/commit/46fdfa8))
+
+### ❤️ Contributors
+
+- Paulmelero ([@paulmelero](https://github.com/paulmelero))
+
 ## v0.0.2
 
 
