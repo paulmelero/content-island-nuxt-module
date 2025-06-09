@@ -27,6 +27,67 @@ Install the module to your Nuxt application with one command:
 npx nuxi module add content-island-nuxt-module
 ```
 
+## Usage
+
+After installing the module, you can start using it in your Nuxt application.
+
+### Configuration
+
+You can configure the module in your `nuxt.config.ts` file. Here is an example configuration:
+
+Add your API Token to your `.env` file. You can get the token from your Content Island dashboard.
+
+```bash
+# .env
+CONTENT_ISLAND_ACCESS_TOKEN=
+```
+
+Then, you can configure the module in your `nuxt.config.ts` file:
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ["content-island"],
+  contentIsland: {
+    // Module options
+    mdc: {
+      // Choose a theme for code highlighting
+      highlight: {
+        theme: "material-theme-darker",
+      },
+    },
+  },
+});
+```
+
+In a Page component, you can use the `$contentIsland` composable to fetch content:
+
+```vue
+<template>
+  <div>
+    <h1>{{ content.title }}</h1>
+    <MarkdownContent :value="content.Article"></MarkdownContent>
+  </div>
+</template>
+
+<script setup lang="ts">
+import type { Article } from "~/types";
+
+const { $contentIsland } = useNuxtApp();
+
+const { data: content } = await useAsyncData(async () => {
+  // Pass the type parameter for type inference and autocompletion
+  const page = await $contentIsland.getContent<Article>(
+    process.env.NUXT_PUBLIC_CONTENT_ID_TEST,
+    // Content Type
+    "Article"
+  );
+
+  return page;
+});
+</script>
+```
+
 That's it! You can now use Content Island - Nuxt Module in your Nuxt app ✨
 
 ## Contribution
@@ -36,26 +97,26 @@ That's it! You can now use Content Island - Nuxt Module in your Nuxt app ✨
   
   ```bash
   # Install dependencies
-  npm install
+  pnpm install
   
   # Generate type stubs
-  npm run dev:prepare
+  pnpm run dev:prepare
   
   # Develop with the playground
-  npm run dev
+  pnpm run dev
   
   # Build the playground
-  npm run dev:build
+  pnpm run dev:build
   
   # Run ESLint
-  npm run lint
+  pnpm run lint
   
   # Run Vitest
-  npm run test
-  npm run test:watch
+  pnpm run test
+  pnpm run test:watch
   
   # Release new version
-  npm run release
+  pnpm run release
   ```
 
 </details>

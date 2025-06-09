@@ -11,7 +11,7 @@ import type { About } from "~/types";
 
 const { $contentIsland } = useNuxtApp();
 
-const { data: page } = await useAsyncData<About>(async () => {
+const { data: page } = await useAsyncData(async () => {
   const page = await $contentIsland.getContent<About>(
     process.env.NUXT_PUBLIC_CONTENT_ID_TEST!, // id, hidden in .env for demonstration purposes
     "About" // contentType
