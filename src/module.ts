@@ -19,7 +19,12 @@ export default defineNuxtModule<ModuleOptions>({
     accessToken: process.env.CONTENT_ISLAND_ACCESS_TOKEN,
     apiVersion: "1.0",
     domain: "api.contentisland.net",
-    mdc: { highlight: false },
+    mdc: {
+      highlight: false,
+      headings: {
+        anchorLinks: false,
+      },
+    },
     markdownContentComponentClass: "md-content",
   },
   async setup(options, nuxt) {

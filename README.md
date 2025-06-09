@@ -88,6 +88,32 @@ const { data: content } = await useAsyncData(async () => {
 </script>
 ```
 
+### MDC
+
+For rendering Markdown content, the Content Island Nuxt Module uses the [Nuxt MDC](https://github.com/nuxt-modules/mdc) module, which provides a powerful way to render Markdown content with syntax highlighting and other features.
+
+Content Island provides a `MarkdownContent` component that you can use to easily render Markdown content. You can import it from the module or use it directly if you have auto-imports enabled. It's a wrapper around the `@nuxt/mdc` module's `MDC` component, which provides syntax highlighting and other features.
+
+You can see the full list of available config options for MDC in the [Nuxt MDC documentation](https://github.com/nuxt-modules/mdc?tab=readme-ov-file#configurations).
+
+For syntax highlighting, you can use the `highlight` option in the module configuration. By default, it is disabled, but you can enable it by setting the `mdc.highlight` option to a config object handled by the `@nuxt/mdc` module. For example, you can set the theme for code highlighting:
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ["content-island"],
+  contentIsland: {
+    mdc: {
+      highlight: {
+        theme: "material-theme-darker",
+      },
+    },
+  },
+});
+```
+
+For a full list of available themes, you can check the [Shiki documentation](https://shiki.style/themes#bundled-themes).
+
 That's it! You can now use Content Island - Nuxt Module in your Nuxt app ✨
 
 ## Contribution
