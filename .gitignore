@@ -16,6 +16,9 @@ node_modules
 # Generated dirs
 dist
 
+## Generated tar files
+*.tgz
+
 # Nuxt
 .nuxt
 .output
