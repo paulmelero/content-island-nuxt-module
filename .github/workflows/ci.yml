@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -24,8 +27,9 @@ jobs:
       - name: Install dependencies
         run: npx nypm@latest i
 
+        # Run linting
       - name: Lint
-        run: npm run lint
+        run: pnpm lint
 
   test:
     runs-on: ubuntu-latest
@@ -33,17 +37,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # Enable corepack for pnpm
       - run: npm i -g --force corepack@latest && corepack enable
 
+      # Install dependencies
       - name: Install dependencies
         run: npx nypm@latest i
 
+        # Prepare the environment
       - name: Playground prepare
-        run: npm run dev:prepare
+        run: pnpm dev:prepare
 
+        # Run tests
       - name: Test
-        run: npm run test
+        run: pnpm test

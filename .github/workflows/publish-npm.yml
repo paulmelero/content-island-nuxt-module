@@ -36,8 +36,11 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
 
+      - name: Build script
+        run: pnpm build
+
       - name: Run release script
-        run: pnpm run release
+        run: pnpm release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Token for publishing to npm, used by 'npm publish' via .npmrc configured by setup-node
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token for changelogen to potentially create GitHub releases and for 'git push'
