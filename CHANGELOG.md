@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.4
+
+[compare changes](https://github.com/paulmelero/content-island-nuxt-module/compare/v0.0.3...v0.0.4)
+
+### 🩹 Fixes
+
+- Add import in component ([35809a2](https://github.com/paulmelero/content-island-nuxt-module/commit/35809a2))
+
+### 🏡 Chore
+
+- **release:** V0.0.3 ([3e21c97](https://github.com/paulmelero/content-island-nuxt-module/commit/3e21c97))
+
+### ❤️ Contributors
+
+- Paulmelero ([@paulmelero](https://github.com/paulmelero))
+
 ## v0.0.3
 
 [compare changes](https://github.com/paulmelero/content-island-nuxt-module/compare/v0.0.2...v0.0.3)
