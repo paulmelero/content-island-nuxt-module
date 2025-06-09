@@ -11,7 +11,7 @@
         <h1 class="article__title">{{ post.title }}</h1>
       </header>
 
-      <div v-html="post.content" class="article__content" />
+      <MarkdownContent :value="post.content" class="article__content" />
 
       <footer>
         <p>
@@ -43,7 +43,14 @@ const { data: post } = await useAsyncData<Post>(`post-${slug}`, async () => {
     });
   }
 
-  return foundPost;
+  return {
+    ...foundPost,
+    date: new Date(foundPost.date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+  };
 });
 </script>
 
@@ -103,11 +110,13 @@ const { data: post } = await useAsyncData<Post>(`post-${slug}`, async () => {
   pre {
     max-width: 100%;
     overflow: auto;
+    background-color: var(--primary-color);
+    padding: var(--space-sm);
+    border-radius: var(--border-radius);
   }
 
   code {
     font-size: var(--fs-xs);
-    border-radius: var(--border-radius);
   }
 }
 </style>

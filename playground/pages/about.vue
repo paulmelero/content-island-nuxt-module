@@ -2,7 +2,7 @@
   <div v-if="page">
     <h1>About</h1>
     <p>{{ page.shortBio }}</p>
-    <MDC :value="page.extendedBio"></MDC>
+    <MarkdownContent :value="page.extendedBio"></MarkdownContent>
   </div>
 </template>
 
