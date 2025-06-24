@@ -1,6 +1,6 @@
 {
   "name": "content-island-nuxt-module",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A Nuxt module for Content Island - the headless CMS",
   "license": "MIT",
   "type": "module",

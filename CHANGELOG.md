@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.0.7
+
+[compare changes](https://github.com/paulmelero/content-island-nuxt-module/compare/v0.0.6...v0.0.7)
+
+### 🏡 Chore
+
+- **release:** V0.0.6 ([0236485](https://github.com/paulmelero/content-island-nuxt-module/commit/0236485))
+- Deprecation notice ([78e8cc1](https://github.com/paulmelero/content-island-nuxt-module/commit/78e8cc1))
+
+### ❤️ Contributors
+
+- Paulmelero ([@paulmelero](https://github.com/paulmelero))
+
 ## v0.0.6
 
 [compare changes](https://github.com/paulmelero/content-island-nuxt-module/compare/v0.0.5...v0.0.6)
